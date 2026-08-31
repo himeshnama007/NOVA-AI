@@ -1,0 +1,23 @@
+{
+  "name": "nova-ai",
+  "version": "1.0.0",
+  "description": "NOVA-AI Fullstack Workspace",
+  "type": "module",
+  "scripts": {
+    "redis:wsl": "wsl -d Ubuntu -u root service redis-server start",
+    "dev:auth": "npm.cmd --prefix backend/services/auth start",
+    "dev:chat": "npm.cmd --prefix backend/services/chat start",
+    "dev:agent": "npm.cmd --prefix backend/services/agent start",
+    "dev:billing": "npm.cmd --prefix backend/services/billing start",
+    "dev:gateway": "npm.cmd --prefix backend/gateway start",
+    "dev:services": "concurrently -n \"auth,chat,agent,billing\" -c \"blue,green,magenta,yellow\" \"npm.cmd run dev:auth\" \"npm.cmd run dev:chat\" \"npm.cmd run dev:agent\" \"npm.cmd run dev:billing\"",
+    "dev:backend": "concurrently -n \"auth,chat,agent,billing,gateway\" -c \"blue,green,magenta,yellow,cyan\" \"npm.cmd run dev:auth\" \"npm.cmd run dev:chat\" \"npm.cmd run dev:agent\" \"npm.cmd run dev:billing\" \"npm.cmd run dev:gateway\"",
+    "dev:frontend": "npm.cmd --prefix frontend run dev",
+    "dev": "concurrently -k -n \"auth,chat,agent,billing,gateway,frontend\" -c \"blue,green,magenta,yellow,cyan,white\" \"npm.cmd run dev:auth\" \"npm.cmd run dev:chat\" \"npm.cmd run dev:agent\" \"npm.cmd run dev:billing\" \"npm.cmd run dev:gateway\" \"npm.cmd run dev:frontend\"",
+    "renew-credits": "node backend/services/auth/renew-credits.js",
+    "dev:all": "npm.cmd run dev"
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
