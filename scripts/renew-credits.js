@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Read auth .env manually to avoid external dependency issues
 const envPath = path.join(__dirname, "../backend/services/auth/.env");
-let mongoUri = "mongodb+srv://himeshnama2405_db_user:MeS3FzzlGfYiFKyS@cluster0.yc3lx1f.mongodb.net/auth";
+let mongoUri = "mongodb+srv://..";
 let redisUrl = "redis://localhost:6379";
 
 if (fs.existsSync(envPath)) {
